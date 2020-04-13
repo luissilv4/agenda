@@ -27,7 +27,7 @@ DEBUG = False
 
 if DEBUG == True:
     ALLOWED_HOSTS = [
-    '134.122.96.217',
+    '68.183.41.119',
     ]
 
     # Database
@@ -44,7 +44,7 @@ else:
     ALLOWED_HOSTS = [
     'www.maxiagenda.pt',
     'localhost:8000',
-    '134.122.96.217',
+    '68.183.41.119',
     ]
 
     # Database
