@@ -25,7 +25,39 @@ SECRET_KEY = 'u$3df*4%9fh$3zq**6po+w(0kg9nvv87=9vn!c7fh9d6wfjla&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+if DEBUG == True:
+    ALLOWED_HOSTS = []
+
+    # Database
+    # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
+else:
+    ALLOWED_HOSTS = [
+    'www.maxiagenda.pt',
+    'localhost:8000'
+    ]
+
+    # Database
+    # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'agenda',
+        'USER': 'agendauser',
+        'PASSWORD': 'lfa4beww4qtuzg1c',
+        'HOST': 'localhost',
+        'PORT': '',
+        }
+    }
+
 
 
 
@@ -53,6 +85,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'agenda.urls'
@@ -76,15 +109,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'agenda.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
@@ -136,3 +161,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAdminUser'
     ]
 }
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = (
+       'localhost:3000',
+)
