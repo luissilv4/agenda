@@ -23,10 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'u$3df*4%9fh$3zq**6po+w(0kg9nvv87=9vn!c7fh9d6wfjla&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 if DEBUG == True:
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = [
+    '134.122.96.217',
+    ]
 
     # Database
     # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
