@@ -43,6 +43,7 @@ if DEBUG == True:
 else:
     ALLOWED_HOSTS = [
     'www.maxiagenda.pt',
+    'api.maxiagenda.pt',
     'localhost:8000',
     '68.183.41.119',
     ]
