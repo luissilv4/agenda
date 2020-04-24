@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import AppointmentListView, AppointmentDetailView
-
+from .views import (AppointmentListCreateView, AppointmentDetailView,
+                    AppointmentRetrieveUpdateDestroyAPIView)
 urlpatterns = [
-    path('', AppointmentListView.as_view()),
-    path('<pk>', AppointmentDetailView.as_view()),
+    path('', AppointmentListCreateView.as_view()),
+    # path('<pk>', AppointmentDetailView.as_view()),
+    path('<uuid>', AppointmentRetrieveUpdateDestroyAPIView.as_view()),
 ]
