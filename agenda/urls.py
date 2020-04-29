@@ -20,10 +20,12 @@ from .views import *
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
-    path('api-clients/', include('clients.api.urls')),
-    path('api-services/', include('services.api.urls')),
-    path('api-appointments/', include('appointments.api.urls')),
-    path('api-staff/', include('staff.api.urls')),
+    path('clients/', include('clients.api.urls')),
+    path('services/', include('services.api.urls')),
+    path('appointments/', include('appointments.api.urls')),
+    path('staff/', include('staff.api.urls')),
+    path('saloons/', include('saloons.api.urls')),
+    path('owners/', include('owners.api.urls')),
 
     path('hello-world', HelloWorld.as_view())
 ]

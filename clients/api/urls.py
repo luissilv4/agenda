@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import *
+from .views import ClientListCreateView, ClientRetrieveUpdateDestroyAPIView
 
 urlpatterns = [
     path('', ClientListCreateView.as_view()),
