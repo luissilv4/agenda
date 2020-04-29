@@ -1,5 +1,16 @@
 Django==2.2
 django-cors-headers==3.2.1
 djangorestframework==3.11.0
+httpie==2.0.0
+idna==2.9
+itypes==1.2.0
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+pyaml==20.4.0
+Pygments==2.6.1
 pytz==2019.3
+PyYAML==5.3.1
+requests==2.23.0
 sqlparse==0.3.1
+uritemplate==3.0.1
+urllib3==1.25.8
