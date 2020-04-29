@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.schemas import get_schema_view
 from .views import *
+
+schema_view = get_schema_view(title='MaxiAgenda API',
+                description='An API to manage your business appointments.')
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
@@ -26,6 +30,7 @@ urlpatterns = [
     path('staff/', include('staff.api.urls')),
     path('saloons/', include('saloons.api.urls')),
     path('owners/', include('owners.api.urls')),
+    path('schema/', schema_view),
 
     path('hello-world', HelloWorld.as_view())
 ]

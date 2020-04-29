@@ -20,4 +20,4 @@ class Appointment(models.Model):
 
     def save(self, *args, **kwargs):
         self.duration = self.service.duration
-        super().save(*args, **kwargs)
+        super(Appointment, self).save(*args, **kwargs)

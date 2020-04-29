@@ -27,12 +27,17 @@ class AppointmentStaffSerializer(serializers.ModelSerializer):
         model = Staff
         fields = ['name']
 
+class AppointmentCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Appointment
+        fields = ('__all__')
 
-class AppointmentSerializer(serializers.ModelSerializer):
+
+class AppointmentListSerializer(serializers.ModelSerializer):
     client = AppointmentClientSerializer(many=False, read_only=True)
-    service = AppointmentServiceSerializer(many=False, read_only=True)
-    staff = AppointmentStaffSerializer(many=False, read_only=True)
+    service = AppointmentServiceSerializer()
+    staff = AppointmentStaffSerializer()
 
     class Meta:
         model = Appointment
-        fields = ['service','date','hour','staff','client','date','duration']
+        fields = ['service','date','hour','staff','client','duration','uuid','notes']
