@@ -13,19 +13,19 @@ from staff.api.serializers import StaffSerializer
 class AppointmentClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
-        fields = ['id','name','phone_number',]
+        fields = ('__all__')
 
 
 class AppointmentServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
-        fields = ['name','duration','price']
+        fields = ('__all__')
 
 
 class AppointmentStaffSerializer(serializers.ModelSerializer):
     class Meta:
         model = Staff
-        fields = ['name']
+        fields = ('__all__')
 
 class AppointmentCreateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,4 +40,4 @@ class AppointmentListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Appointment
-        fields = ['service','date','hour','staff','client','duration','uuid','notes']
+        fields = ['service','date','staff','client','duration','uuid','notes']
