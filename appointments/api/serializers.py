@@ -10,33 +10,31 @@ from staff.api.serializers import StaffSerializer
 
 
 
-class AppointmentClientSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Client
-        fields = ('__all__')
-
-
-class AppointmentServiceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Service
-        fields = ('__all__')
-
-
 class AppointmentStaffSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Staff
-        fields = ('__all__')
+        model = Appointment
+        fields = ['client','service','date','duration','notes','uuid']
 
-class AppointmentCreateSerializer(serializers.ModelSerializer):
+
+
+class AppointmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Appointment
+        fields = ['client','staff','service','date','duration','notes','uuid']
+
+
+
+class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = ('__all__')
 
 
+
 class AppointmentListSerializer(serializers.ModelSerializer):
-    client = AppointmentClientSerializer(many=False, read_only=True)
-    service = AppointmentServiceSerializer()
-    staff = AppointmentStaffSerializer()
+    client = ClientSerializer()
+    service = ServiceSerializer()
+    staff = StaffSerializer()
 
     class Meta:
         model = Appointment

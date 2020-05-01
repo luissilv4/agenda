@@ -1,38 +1,16 @@
 from rest_framework.generics import (ListAPIView, RetrieveAPIView,
                                     ListCreateAPIView, RetrieveUpdateDestroyAPIView,
                                     ListAPIView, CreateAPIView)
-
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
 from rest_framework import viewsets
 from appointments.models import Appointment
+from services.models import Service
 from .serializers import (AppointmentListSerializer,
-                         AppointmentSerializer, AppointmentListSerializer)
+                         AppointmentSerializer, AppointmentListSerializer,
+                         AppointmentStaffSerializer)
 
-
-# class AppointmentListView(ListAPIView):
-#     queryset = Appointment.objects.all()
-#     serializer_class = AppointmentListSerializer
-#     permission_classes = (IsAuthenticated, )
-#     lookup_field = 'uuid'
-#
-#
-# class AppointmentCreateView(CreateAPIView):
-#     queryset = Appointment.objects.all()
-#     serializer_class = AppointmentCreateSerializer
-#     permission_classes = (IsAuthenticated, )
-#     lookup_field = 'uuid'
-#
-#
-# class AppointmentDetailView(RetrieveAPIView):
-#     queryset = Appointment.objects.all()
-#     serializer_class = AppointmentListSerializer
-#
-#
-# class AppointmentRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
-#     queryset = Appointment.objects.all()
-#     serializer_class = AppointmentCreateSerializer
-#     permission_classes = (IsAuthenticated, )
-#     lookup_field = 'uuid'
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
@@ -49,7 +27,28 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     # detail_serializer_class = AppointmentDetailSerializer
     lookup_field = 'uuid'
 
-    # def get_serializer_class(self):
+    def perform_create(self, serializer):
+        service_id = (serializer.validated_data['service'])
+        service_duration = Service.objects.get(pk=service_id.pk).duration
+        serializer_duration = (serializer.validated_data['duration'])
+        if serializer_duration == None:
+            serializer.save(duration=service_duration)
+        else:
+            serializer.save(duration=serializer_duration)
+
+    def partial_update(self, request):
+        pass
+
+    # def create(self, request):
+    #     pass
+
+
+    @action(detail=False)
+    def get_staff_appointment(self, request, *args, **kwargs):
+        appointments = Appointment.objects.filter(staff=self.kwargs['staff_pk'])
+        appointments_json = AppointmentStaffSerializer(appointments, many=True)
+        return Response(appointments_json.data)
+
     #     """
     #     Determins which serializer to user `list` or `detail`
     #     """
@@ -57,6 +56,7 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     #         if hasattr(self, 'detail_serializer_class'):
     #             return self.detail_serializer_class
     #     return super().get_serializer_class()
+
 
 
 

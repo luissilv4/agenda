@@ -17,7 +17,7 @@ class Appointment(models.Model):
 
     uuid = models.UUIDField(unique=True, default=uuid_lib.uuid4, editable=False)
 
-    def save(self, *args, **kwargs):
-        if not self.duration:
-            self.duration = self.service.duration
-            super(Appointment, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not self.duration:
+    #         self.duration = self.service.duration
+    #         super(Appointment, self).save(*args, **kwargs)
