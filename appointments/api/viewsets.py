@@ -45,8 +45,6 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         else:
             serializer.save(duration=serializer_duration)
 
-    def partial_update(self, request):
-        pass
 
 
     @action(detail=False)
