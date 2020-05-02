@@ -22,10 +22,19 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     """
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
+    list_serializer = AppointmentListSerializer
     permission_classes = (IsAuthenticated, )
     # filter_backends = (DjangoFilterBackend, OrderingFilter,)
     # detail_serializer_class = AppointmentDetailSerializer
     lookup_field = 'uuid'
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+                return self.list_serializer
+        return self.serializer_class
+
+    # def create(self, request):
+    #     pass
 
     def perform_create(self, serializer):
         service_id = (serializer.validated_data['service'])
@@ -38,9 +47,6 @@ class AppointmentViewSet(viewsets.ModelViewSet):
 
     def partial_update(self, request):
         pass
-
-    # def create(self, request):
-    #     pass
 
 
     @action(detail=False)
