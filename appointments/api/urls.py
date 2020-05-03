@@ -29,7 +29,7 @@ appointment_staff_list = AppointmentViewSet.as_view({
 
 urlpatterns = format_suffix_patterns([
     path('', appointments_list, name='appointments-list'),
-    path('<uuid>/', appointment_detail, name='appointment-detail'),
+    path('<uuid>', appointment_detail, name='appointment-detail'),
 
     path('staff/<int:staff_pk>/', appointment_staff_list, name='appointment-staff'),
 ])

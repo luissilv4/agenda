@@ -30,7 +30,7 @@ class AppointmentViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'list':
-                return self.list_serializer
+            return self.list_serializer
         return self.serializer_class
 
     # def create(self, request):
