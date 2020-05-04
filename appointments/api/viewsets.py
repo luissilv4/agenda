@@ -1,6 +1,3 @@
-from rest_framework.generics import (ListAPIView, RetrieveAPIView,
-                                    ListCreateAPIView, RetrieveUpdateDestroyAPIView,
-                                    ListAPIView, CreateAPIView)
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
@@ -60,7 +57,20 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     #         if hasattr(self, 'detail_serializer_class'):
     #             return self.detail_serializer_class
     #     return super().get_serializer_class()
-
+    # def get_queryset(self):
+    #         """
+    #         Optionally restricts the returned queries by filtering against
+    #         a `sport` and `name` query parameter in the URL.
+    #         """
+    #         queryset = Match.objects.all()
+    #         sport = self.request.query_params.get('sport', None)
+    #         name = self.request.query_params.get('name', None)
+    #         if sport is not None:
+    #             sport = sport.title()
+    #             queryset = queryset.filter(sport__name=sport)
+    #         if name is not None:
+    #             queryset = queryset.filter(name=name)
+    #         return queryset
 
 
 

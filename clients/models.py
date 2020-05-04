@@ -15,6 +15,13 @@ class Sex(models.Model):
         return self.name
 
 
+class RGPD(models.Model):
+    sms_reminders = models.BooleanField(default=False)
+    email_reminders = models.BooleanField(default=False)
+    new_appointment_notification = models.BooleanField(default=False)
+    # anversarios e campanhas
+    marketing = models.BooleanField(default=False)
+    satisfaction_forms = models.BooleanField(default=False)
 
 
 class Client(models.Model):
@@ -23,9 +30,9 @@ class Client(models.Model):
     email = models.EmailField()
     phone_number = models.IntegerField()
     alt_phone_number = models.IntegerField(blank=True, null=True)
-    sex = models.ForeignKey(Sex, on_delete=models.DO_NOTHING)
+    sex = models.ForeignKey(Sex, on_delete=models.DO_NOTHING, related_name='client_sex')
     data = models.DateField(auto_now=True)
-    rgpd = models.BooleanField()
+    rgpd = models.ForeignKey(RGPD, on_delete=models.DO_NOTHING, related_name='client_rgpd')
     birthday = models.DateField(blank=True, null=True)
     nif = models.IntegerField(blank=True, null=True)
     cc = models.CharField(max_length=15, blank=True)
@@ -39,3 +46,6 @@ class Client(models.Model):
 
     def __str__(self):
         return self.name
+
+    def sex_name(self):
+        return self.sex.name
