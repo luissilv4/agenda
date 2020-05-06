@@ -25,10 +25,8 @@ SECRET_KEY = 'u$3df*4%9fh$3zq**6po+w(0kg9nvv87=9vn!c7fh9d6wfjla&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-if DEBUG == False:
+if DEBUG == True:
     ALLOWED_HOSTS = [
-    'www.maxiagenda.pt',
-    'api.maxiagenda.pt',
     '68.183.41.119',
     'localhost',
     '127.0.0.1',
@@ -58,8 +56,8 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'agendadb',
-        'USER': 'agendausr',
+        'NAME': 'agenda',
+        'USER': 'agendauser',
         'PASSWORD': 'lfa4beww4qtuzg1c',
         'HOST': 'localhost',
         'PORT': '',
