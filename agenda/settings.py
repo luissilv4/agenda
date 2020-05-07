@@ -55,8 +55,8 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'agenda',
-        'USER': 'agendauser',
+        'NAME': 'agendadb',
+        'USER': 'agendausr',
         'PASSWORD': 'lfa4beww4qtuzg1c',
         'HOST': 'localhost',
         'PORT': '',
