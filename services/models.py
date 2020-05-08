@@ -2,13 +2,13 @@ from django.db import models
 
 # Create your models here.
 
-#
-# class Office(models.Model):
-#     name = models.CharField(max_length=20)
-#
-#     def __str__(self):
-#         return self.name
-#
+
+class Office(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
 
 class Service(models.Model):
     name = models.CharField(max_length=75,unique=True)
