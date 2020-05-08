@@ -6,6 +6,6 @@ from .views import (ServiceListCreateView, ServiceRetrieveUpdateDestroyAPIView,
 urlpatterns = [
     path('', ServiceListCreateView.as_view()),
     path('<pk>', ServiceRetrieveUpdateDestroyAPIView.as_view()),
-    path('offices', ServiceRetrieveUpdateDestroyAPIView.as_view()),
+    path('offices', OfficeListCreateView.as_view()),
     path('offices/<int:pk>', ServiceRetrieveUpdateDestroyAPIView.as_view()),
 ]
