@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
+from datetime import datetime
 from rest_framework import viewsets
 from appointments.models import Appointment
 from services.models import Service
@@ -49,6 +50,26 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         appointments = Appointment.objects.filter(staff=self.kwargs['staff_pk'])
         appointments_json = AppointmentStaffSerializer(appointments, many=True)
         return Response(appointments_json.data)
+
+
+    def update(self, request, uuid=None):
+        instance = self.queryset.get(uuid=uuid)
+        serializer = self.serializer_class(instance, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        service_duration = Service.objects.get(pk=instance.service.pk).duration
+        print(type(service_duration))
+        duration = serializer.validated_data['duration']
+        duration_str = duration.strftime("%H:%M:%S")
+        print(duration_str)
+
+        if duration_str == "00:00" or duration_str == "00:00:00":
+            serializer.save(duration=service_duration)
+
+        else:
+            serializer.duration = duration
+            serializer.save()
+
+        return Response(serializer.data)
 
     #     """
     #     Determins which serializer to user `list` or `detail`
